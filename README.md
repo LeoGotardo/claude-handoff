@@ -8,6 +8,7 @@ Custom slash commands for [Claude Code](https://docs.anthropic.com/en/docs/claud
 |---|---|
 | `/handoff` | Creates a new `HANDOFF.md` from scratch in the repo root |
 | `/handoff-update` | Updates an existing `HANDOFF.md` without losing history |
+| `/handoff-catchup` | Reads `HANDOFF.md` and resumes work immediately |
 
 Both commands automatically run `git diff`, `git status`, and `git log` to collect context, then print the **Resume Prompt** directly in the terminal for you to paste into the next session.
 
@@ -68,6 +69,14 @@ To update the file mid-session after making more progress:
 
 This preserves the history of attempted approaches and known facts, and rewrites only what changed.
 
+To resume in a new session from an existing `HANDOFF.md`:
+
+```
+/handoff-catchup
+```
+
+This reads the handoff file, cross-references the current repo state, prints a structured catchup summary, and starts executing the next step immediately — no re-explanation needed.
+
 ## What gets captured
 
 ```
@@ -82,8 +91,31 @@ HANDOFF.md
 └── Resume Prompt    — self-contained prompt for the next session
 ```
 
-## Customizing the template
+## Updating
 
+To update all commands to the latest version:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/LeoGotardo/claude-handoff/master/update.sh | bash
+```
+
+Or if you cloned the repo:
+
+```bash
+bash update.sh
+```
+
+**Flags:**
+
+| Flag | Description |
+|---|---|
+| `--check` | Show which files are outdated without updating |
+| `--skip-template` | Update commands but leave `handoff-template.md` untouched |
+| `--force` | Update all files including template without prompting |
+
+The script asks before overwriting `handoff-template.md` so local customizations are not lost silently. Use `--skip-template` to always preserve your template, or `--force` to always overwrite.
+
+## Customizing the template
 The structure of the generated `HANDOFF.md` is defined in `.claude/commands/handoff-template.md`.
 Edit that file to add, remove, or rename sections — both commands pick up the changes
 automatically without touching the command logic.
@@ -104,8 +136,10 @@ claude-handoff/
 │   └── commands/
 │       ├── handoff.md           # /handoff command — logic only
 │       ├── handoff-update.md    # /handoff-update command — logic only
+│       ├── handoff-catchup.md   # /handoff-catchup command — resume from file
 │       └── handoff-template.md  # output structure — edit this to customize
 ├── install.sh                   # global install script
+├── update.sh                    # update commands to latest version
 └── README.md
 ```
 
