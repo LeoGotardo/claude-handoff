@@ -82,15 +82,30 @@ HANDOFF.md
 └── Resume Prompt    — self-contained prompt for the next session
 ```
 
+## Customizing the template
+
+The structure of the generated `HANDOFF.md` is defined in `.claude/commands/handoff-template.md`.
+Edit that file to add, remove, or rename sections — both commands pick up the changes
+automatically without touching the command logic.
+
+For example, to add an **Environment** section, open `handoff-template.md` and add:
+
+```markdown
+## Environment
+
+{{Node version, OS, Docker, env vars, or anything else relevant to reproduce the issue.}}
+```
+
 ## Repository structure
 
 ```
 claude-handoff/
 ├── .claude/
 │   └── commands/
-│       ├── handoff.md          # /handoff command definition
-│       └── handoff-update.md   # /handoff-update command definition
-├── install.sh                  # global install script
+│       ├── handoff.md           # /handoff command — logic only
+│       ├── handoff-update.md    # /handoff-update command — logic only
+│       └── handoff-template.md  # output structure — edit this to customize
+├── install.sh                   # global install script
 └── README.md
 ```
 

@@ -18,7 +18,15 @@ git log --oneline -10
 git status --short
 ```
 
-## Step 3 — Diff and update
+## Step 3 — Load the template (for section reference)
+
+```bash
+cat .claude/commands/handoff-template.md
+```
+
+Use the section names from the template as the canonical structure when rewriting the file.
+
+## Step 4 — Diff and update
 
 Compare the existing file against the current session state. For each section, apply this logic:
 
@@ -41,11 +49,11 @@ Rules:
 - The Resume Prompt must always be fully rewritten. It must be self-contained and current.
 - Keep the file under 150 lines.
 
-## Step 4 — Write the updated file
+## Step 5 — Write the updated file
 
 Overwrite HANDOFF.md with the updated content.
 
-## Step 5 — Confirm and print Resume Prompt
+## Step 6 — Confirm and print Resume Prompt
 
 After writing, output exactly this:
 
