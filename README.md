@@ -16,7 +16,7 @@ Both commands automatically run `git diff`, `git status`, and `git log` to colle
 ### Option 1 — install script (global)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/seu-usuario/claude-handoff/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/LeoGotardo/claude-handoff/master/install.sh | bash
 ```
 
 This installs the commands to `~/.claude/commands/`, making them available in every project.
@@ -27,10 +27,10 @@ This installs the commands to `~/.claude/commands/`, making them available in ev
 mkdir -p ~/.claude/commands
 
 curl -o ~/.claude/commands/handoff.md \
-  https://raw.githubusercontent.com/seu-usuario/claude-handoff/main/.claude/commands/handoff.md
+  https://raw.githubusercontent.com/LeoGotardo/claude-handoff/master/.claude/commands/handoff.md
 
 curl -o ~/.claude/commands/handoff-update.md \
-  https://raw.githubusercontent.com/seu-usuario/claude-handoff/main/.claude/commands/handoff-update.md
+  https://raw.githubusercontent.com/LeoGotardo/claude-handoff/master/.claude/commands/handoff-update.md
 ```
 
 ### Option 3 — per project
@@ -41,10 +41,10 @@ Clone or copy the `.claude/commands/` folder into your project root:
 mkdir -p .claude/commands
 
 curl -o .claude/commands/handoff.md \
-  https://raw.githubusercontent.com/seu-usuario/claude-handoff/main/.claude/commands/handoff.md
+  https://raw.githubusercontent.com/LeoGotardo/claude-handoff/master/.claude/commands/handoff.md
 
 curl -o .claude/commands/handoff-update.md \
-  https://raw.githubusercontent.com/seu-usuario/claude-handoff/main/.claude/commands/handoff-update.md
+  https://raw.githubusercontent.com/LeoGotardo/claude-handoff/master/.claude/commands/handoff-update.md
 ```
 
 > Commands in `.claude/commands/` are scoped to that project only.
